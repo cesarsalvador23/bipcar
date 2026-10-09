@@ -100,6 +100,20 @@ footer{padding:36px clamp(18px,5vw,56px);text-align:center;color:var(--mute);fon
  .dev{width:min(290px,82vw)}.reader{height:50px}.reader em{display:none}.win{width:60%}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}}
+.sub{font-size:clamp(22px,3vw,30px);margin:52px 0 0}
+.brandgrid{display:grid;grid-template-columns:minmax(200px,320px) 1fr;gap:32px;align-items:center;margin-top:34px}
+.logo-card{background:#f5f7f4;border:1px solid var(--line);border-radius:30px 12px 30px 12px;padding:30px;display:grid;place-items:center}
+.logo-card img{width:100%;max-width:230px;height:auto;display:block}
+.brandgrid dl{display:grid;gap:16px}
+.brandgrid dt{font:600 20px Georgia,serif;color:var(--g2)}
+.brandgrid dd{margin:2px 0 0;color:var(--mute);font-size:16px}
+.brandgrid dd.slogan{font:italic 500 clamp(22px,3vw,30px)/1.25 Georgia,serif;color:var(--g2);margin:6px 0 4px}
+.vals{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.vals span{border:1px solid var(--g);color:var(--g2);border-radius:999px;padding:5px 16px;font-size:15px}
+.note{margin-top:28px;padding:16px 20px;border-left:4px solid var(--g);background:color-mix(in srgb,var(--g) 10%,transparent);border-radius:0 var(--r) var(--r) 0;color:var(--mute);font-size:15px}
+.gl{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:34px}
+.gl .card{padding:18px 22px}.gl strong{display:block;font:600 19px Georgia,serif;color:var(--g2);margin-bottom:4px}
+@media (max-width:760px){.brandgrid{grid-template-columns:1fr}.logo-card{max-width:260px}}
 </style>
 </head>
 <body>
@@ -107,10 +121,11 @@ footer{padding:36px clamp(18px,5vw,56px);text-align:center;color:var(--mute);fon
   <a class="brand" href="#inicio" aria-label="Bipcar, inicio"><img src="logo.png" alt="Bipcar"></a>
   <ul>
     <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#que-es">Qué es</a></li>
     <li><a href="#como">Cómo funciona</a></li>
     <li><a href="#manual">Manual de uso</a></li>
+    <li><a href="#marca">Marca</a></li>
     <li><a href="#sucursales">Sucursales</a></li>
-    <li><a href="#negocios">Para negocios</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 </nav>
@@ -145,6 +160,18 @@ footer{padding:36px clamp(18px,5vw,56px);text-align:center;color:var(--mute);fon
     </div></div>
   </div>
 </header>
+
+<section class="s" id="que-es"><div class="wrap">
+  <h2 class="rv">¿Qué es Bipcar?</h2>
+  <p class="lead rv">Bipcar es una pantalla que se pone en el manubrio del carrito del súper. Escaneas cada producto, ves cuánto llevas y pagas ahí mismo, sin hacer fila en la caja. Es como el verificador de precios de la pared, pero va contigo en el carrito y además cobra.</p>
+  <h3 class="sub rv">¿Qué problema resolvemos?</h3>
+  <div class="grid">
+    <div class="card rv"><h3>No sabes cuánto llevas</h3><p>Muchas personas van echando cosas al carrito sin sumar, y el susto llega hasta la caja. Con Bipcar el total se actualiza con cada producto.</p></div>
+    <div class="card rv"><h3>Las filas son largas</h3><p>Esperar en caja quita tiempo. Con el pago en el carrito te saltas esa espera.</p></div>
+    <div class="card rv"><h3>Compras sin poder decidir</h3><p>Si ves el total mientras compras, puedes dejar algo en el anaquel antes de pasar a pagar, no después.</p></div>
+  </div>
+  <div class="note rv">Bipcar es un proyecto escolar en desarrollo. Esta página muestra cómo funcionaría.</div>
+</div></section>
 
 <section class="s alt" id="como"><div class="wrap">
   <h2 class="rv">Así de fácil se usa</h2>
@@ -184,6 +211,32 @@ footer{padding:36px clamp(18px,5vw,56px);text-align:center;color:var(--mute);fon
       <li>Si un código no se lee, límpialo o acércalo más al lector. También puedes pedir ayuda al personal.</li>
       <li>Si tu carrito no se escanea, no metas el producto hasta que el "bip" lo confirme.</li>
     </ul>
+  </div>
+</div></section>
+
+<section class="s alt" id="marca"><div class="wrap">
+  <h2 class="rv">Nuestra marca</h2>
+  <div class="brandgrid">
+    <div class="logo-card rv"><img src="logo.png" alt="Logotipo de Bipcar"></div>
+    <dl class="rv">
+      <div><dt>El nombre</dt><dd>"Bip" es el sonido que hace el lector cuando registra un producto. "Car" es el carrito. Juntos: el carrito que hace bip.</dd></div>
+      <div><dt>El logo</dt><dd>La B y la C van entrelazadas, porque Bipcar une al cliente con su carrito. Es simple a propósito: pocas formas y un solo color.</dd></div>
+      <div><dt>Nuestro lema</dt><dd class="slogan">Tu súper, con la cuenta clara.</dd></div>
+      <div><dt>Lo que nos importa</dt><dd><div class="vals"><span>Sencillo</span><span>Claro</span><span>Rápido</span></div></dd></div>
+    </dl>
+  </div>
+</div></section>
+
+<section class="s" id="palabras"><div class="wrap">
+  <h2 class="rv">En palabras simples</h2>
+  <p class="lead rv">Por si alguna palabra suena rara, así la diríamos entre amigos.</p>
+  <div class="gl">
+    <div class="card rv"><strong>Autocobro</strong>Tú mismo pagas, sin esperar al cajero.</div>
+    <div class="card rv"><strong>Lector o escáner</strong>La parte que "lee" las rayitas de cada producto.</div>
+    <div class="card rv"><strong>Código de barras</strong>Las rayitas que traen todos los productos. Ahí va guardado su precio.</div>
+    <div class="card rv"><strong>Total acumulado</strong>La suma de todo lo que llevas en el carrito, hasta ese momento.</div>
+    <div class="card rv"><strong>Comprobante</strong>El "ticket" que muestra que ya pagaste.</div>
+    <div class="card rv"><strong>Implementar</strong>Ponerlo a funcionar en una tienda.</div>
   </div>
 </div></section>
 
