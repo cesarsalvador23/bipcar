@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bipcar | Autocobro en tu carrito</title>
+<style>
+:root{--bg:#f5f7f4;--ink:#22332b;--mute:#5d6e65;--g:#5b8a72;--g2:#3f6652;--line:#dbe4de;--card:#fff;--r:18px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141c18;--ink:#e8efea;--mute:#9fb0a6;--g:#7fb297;--g2:#a7d3bc;--line:#2a3a32;--card:#1b2620}:root:not([data-theme="light"]) .brand img{filter:brightness(0) invert(.92)}}
+:root[data-theme="dark"]{--bg:#141c18;--ink:#e8efea;--mute:#9fb0a6;--g:#7fb297;--g2:#a7d3bc;--line:#2a3a32;--card:#1b2620}
+:root[data-theme="dark"] .brand img{filter:brightness(0) invert(.92)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:17px/1.65 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;line-height:1.15;letter-spacing:-.01em}
+h2{font-size:clamp(28px,4vw,42px);margin-bottom:12px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--g);outline-offset:3px}
+nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:calc(10px + env(safe-area-inset-top,0px)) clamp(18px,5vw,56px) 10px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:block;line-height:0;text-decoration:none}
+.brand img{height:50px;width:auto;display:block}
+nav ul{display:flex;gap:clamp(12px,2.5vw,32px);list-style:none;padding:0}
+nav ul a{text-decoration:none;font-size:15px;color:var(--mute);padding:6px 2px;border-bottom:2px solid transparent}
+nav ul a:hover,nav ul a.on{color:var(--ink);border-color:var(--g)}
+section.s{padding:clamp(64px,10vw,120px) clamp(18px,5vw,56px)}
+.wrap{max-width:1040px;margin:auto}
+.lead{color:var(--mute);max-width:56ch}
+/* HERO con giro */
+#inicio{height:340vh;position:relative;color:#eef4f0;background:radial-gradient(760px 460px at 50% 70%,rgba(63,102,82,.55),transparent 70%),radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/26px 26px,#0a100d}
+.stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:76px 20px 24px;max-width:1100px;margin:auto}
+.stage .txt{text-align:center;max-width:940px}
+.stage .txt img{width:92px;background:#f5f7f4;border-radius:18px;padding:10px;display:block;margin:0 auto 10px}
+.stage h1{font-size:clamp(26px,3.5vw,44px);margin:0 0 8px;color:#f1f6f2}
+.stage .lead{color:#a9bbb1;margin:0 auto;font-size:16px;max-width:780px}
+@media (max-height:780px) and (min-width:761px){.stage{padding-top:68px;gap:10px}.stage .txt img{width:68px;padding:7px;margin-bottom:6px}.hint{display:none}}
+.hint{margin-top:6px;font-size:13px;color:#7f9387}
+.scene{perspective:1100px;display:flex;justify-content:center;position:relative;width:100%}
+.scene::before{content:'';position:absolute;left:18%;right:18%;top:8%;bottom:8%;background:radial-gradient(closest-side,rgba(110,170,140,.5),transparent);filter:blur(36px)}
+.scene::after{content:'';position:absolute;bottom:-18px;left:28%;right:28%;height:26px;background:radial-gradient(closest-side,rgba(0,0,0,.85),transparent)}
+.dev{position:relative;z-index:1;width:min(400px,84vw,44vh);aspect-ratio:1/.9;transform-style:preserve-3d;will-change:transform}
+.face{position:absolute;inset:0;border-radius:30px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.side{position:absolute;inset:8px 0;background:#8f9b94;border-radius:30px}
+.front{background:linear-gradient(165deg,#e6ebe8,#bcc7c1);padding:14px 14px 0;display:flex;flex-direction:column;transform:translateZ(10px);box-shadow:0 34px 60px -24px rgba(34,51,43,.55)}
+.back{background:linear-gradient(160deg,#6b9a82,#3f6652);transform:rotateY(180deg) translateZ(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#eef5f0;text-align:center;padding:20px}
+.back .lbl{font:600 34px Georgia,serif}
+.clamp{display:flex;gap:90px}.clamp i{width:22px;height:90px;border-radius:11px;background:#d7e6dc;box-shadow:inset 0 0 0 5px #2f4e3e}
+.bez{flex:1;background:#18241e;border-radius:18px;padding:9px;min-height:0}
+.scr{position:relative;height:100%;border-radius:10px;overflow:hidden;background:#f5f7f4;color:#22332b;font-size:12.5px;line-height:1.35}
+.sl{position:absolute;inset:0;padding:12px 14px 22px;display:flex;flex-direction:column;opacity:0;transition:opacity .5s}
+.sl.on{opacity:1}
+.sl.c{align-items:center;justify-content:center;text-align:center;gap:6px}
+.sl.c img{width:46%;mix-blend-mode:multiply}
+.sl b.t{font:600 15px Georgia,serif;color:#3f6652;margin-bottom:6px}
+.it{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #dbe4de}
+.it small{display:block;color:#6d7d74;font-size:10.5px}
+.tot{margin-top:auto;display:flex;justify-content:space-between;font-size:15px;font-weight:700}
+.big{font:600 30px Georgia,serif;color:#3f6652}
+.pay{background:#5b8a72;color:#fff;padding:8px 14px;border-radius:12px;font-weight:600}
+.dots{position:absolute;bottom:7px;left:0;right:0;display:flex;justify-content:center;gap:6px}
+.dots i{width:7px;height:7px;border-radius:50%;background:#c3d0c8}.dots i.on{background:#5b8a72}
+.reader{height:64px;display:flex;align-items:center;justify-content:center;gap:14px}
+.win{width:46%;height:22px;background:#111b16;border-radius:11px;position:relative;overflow:hidden;box-shadow:inset 0 2px 5px #000}
+.win b{position:absolute;left:8%;right:8%;top:50%;height:2px;background:#ff6f5e;box-shadow:0 0 8px #ff6f5e}
+.reader em{font-style:normal;font-size:12px;color:#4a5d53}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin-top:36px}
+.how .card{padding:16px 16px 22px}.how h3{margin:14px 0 6px}
+.il{width:100%;height:auto;display:block;background:color-mix(in srgb,var(--g) 10%,transparent);border-radius:14px}
+.il *{stroke-linecap:round;stroke-linejoin:round}
+.il .o{fill:none;stroke:var(--ink);stroke-width:3}
+.il .f{fill:var(--card);stroke:var(--ink);stroke-width:3}
+.il .d{fill:#26362e;stroke:var(--ink);stroke-width:3}
+.il .p{fill:var(--g);stroke:var(--ink);stroke-width:3}
+.il .s{fill:#e9b996;stroke:var(--ink);stroke-width:3}
+.il text{font:700 14px Georgia,serif;fill:var(--g2);stroke:none}
+.avoid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
+.avoid div{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;font-size:15px;color:var(--mute)}
+.avoid b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff}
+.ok{background:#4f9a6f}.no{background:#d4604f}
+.names{list-style:none;padding:0;color:var(--mute);font-size:16px}.names li{padding:3px 0}
+/* tarjetas */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:36px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.card h3{font-size:22px;margin-bottom:8px;color:var(--g2)}
+.card p{color:var(--mute);font-size:16px}
+.card.big{border-radius:30px 12px 30px 12px}
+/* manual */
+ol.steps{list-style:none;padding:0;margin-top:36px;counter-reset:s;display:grid;gap:14px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 22px;align-items:start}
+ol.steps li::before{content:counter(s);width:40px;height:40px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center;font:600 18px Georgia,serif}
+ol.steps strong{display:block;font-size:18px;color:var(--g2)}
+ol.steps span{color:var(--mute);font-size:16px}
+.tips{margin-top:28px;padding:22px 26px;border-left:4px solid var(--g);background:color-mix(in srgb,var(--g) 10%,transparent);border-radius:0 var(--r) var(--r) 0}
+.tips li{margin:6px 0 6px 18px;color:var(--mute)}
+.alt{background:color-mix(in srgb,var(--g) 7%,var(--bg));border-block:1px solid var(--line)}
+footer{padding:36px clamp(18px,5vw,56px);text-align:center;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
+@media (max-width:760px){
+ nav{flex-direction:column;align-items:flex-start;gap:0;padding:calc(8px + env(safe-area-inset-top,0px)) 14px 0}nav ul{gap:18px;width:100%;overflow-x:auto;white-space:nowrap;scrollbar-width:none}nav ul::-webkit-scrollbar{display:none}nav ul a{font-size:14px;padding:8px 2px;display:block}.brand img{height:32px}html{scroll-padding-top:92px}
+ .stage{padding-top:calc(96px + env(safe-area-inset-top,0px));gap:8px}.stage .txt img{width:60px}.stage h1{font-size:23px}.stage .lead{font-size:14px}.hint{display:none}
+ .dev{width:min(290px,82vw)}.reader{height:50px}.reader em{display:none}.win{width:60%}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="brand" href="#inicio" aria-label="Bipcar, inicio"><img src="logo.png" alt="Bipcar"></a>
+  <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#como">Cómo funciona</a></li>
+    <li><a href="#manual">Manual de uso</a></li>
+    <li><a href="#sucursales">Sucursales</a></li>
+    <li><a href="#negocios">Para negocios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<header id="inicio">
+  <div class="stage">
+    <div class="txt">
+      <h1>Escanea, revisa y paga desde tu carrito.</h1>
+      <p class="lead">Bipcar es una pantalla de autocobro para el carrito del súper. Lee el código de cada producto, suma el total al instante y te deja pagar sin pasar por caja.</p>
+      <p class="hint">Desliza hacia abajo y mira cómo gira Bipcar.</p>
+    </div>
+    <div class="scene"><div class="dev" id="dev">
+      <div class="side"></div>
+      <div class="face back">
+        <div class="clamp" aria-hidden="true"><i></i><i></i></div>
+        <div class="lbl">Bipcar</div>
+        <small>Se fija al manubrio del carrito</small>
+      </div>
+      <div class="face front">
+        <div class="bez"><div class="scr" id="scr">
+          <div class="sl c on"><img src="logo.png" alt="Bipcar"><b class="t">1. Escanea</b><span>Acerca tu primer producto al lector</span></div>
+          <div class="sl"><b class="t">2. Revisa tu carrito</b>
+            <div class="it"><span>Leche entera 1 L<small>2 piezas</small></span><span>$57.00</span></div>
+            <div class="it"><span>Pan integral<small>1 pieza</small></span><span>$42.00</span></div>
+            <div class="it"><span>Manzana roja<small>1 kg</small></span><span>$39.90</span></div>
+            <div class="tot"><span>Total</span><span>$138.90</span></div></div>
+          <div class="sl c"><b class="t">3. Paga aquí mismo</b><span class="big">$138.90</span><span class="pay">Acerca tu tarjeta</span><span>Muestra tu comprobante al salir</span></div>
+          <div class="dots"><i class="on"></i><i></i><i></i></div>
+        </div></div>
+        <div class="reader"><span class="win"><b></b></span><em>Acerca el código aquí</em></div>
+      </div>
+    </div></div>
+  </div>
+</header>
+
+<section class="s alt" id="como"><div class="wrap">
+  <h2 class="rv">Así de fácil se usa</h2>
+  <p class="lead rv">Muchas personas no saben cuánto llevan hasta que llegan a la caja. Con Bipcar lo ves todo el tiempo y pagas ahí mismo. Cuatro pasos:</p>
+  <div class="how">
+    <div class="card rv"><svg class="il" viewBox="0 0 200 140" role="img" aria-label="Un carrito con la pantalla de Bipcar en el manubrio"><path class="o" d="M20 126H180"/><path class="f" d="M64 54H170L156 100H78Z"/><path class="o" d="M92 54L98 100M120 54V100M148 54L142 100M71 77H163"/><path class="o" d="M64 54L58 48"/><rect class="d" x="16" y="16" width="50" height="34" rx="6"/><rect x="21" y="21" width="40" height="20" rx="3" fill="#f5f7f4"/><rect x="25" y="26" width="22" height="3" rx="1.5" fill="#5b8a72"/><rect x="25" y="32" width="14" height="3" rx="1.5" fill="#5b8a72"/><circle class="f" cx="90" cy="114" r="8"/><circle class="f" cx="148" cy="114" r="8"/></svg>
+      <h3>1. Toma un carrito</h3><p>Está en la entrada y trae la pantalla Bipcar en el manubrio.</p></div>
+    <div class="card rv"><svg class="il" viewBox="0 0 200 140" role="img" aria-label="Una mano acerca un producto al lector de la pantalla"><rect class="f" x="14" y="14" width="86" height="112" rx="12"/><rect class="d" x="22" y="22" width="70" height="52" rx="6"/><rect x="28" y="28" width="58" height="40" rx="3" fill="#f5f7f4"/><text x="34" y="53">$42.00</text><rect class="d" x="30" y="90" width="54" height="14" rx="7"/><path d="M36 97H78" stroke="#ff6f5e" stroke-width="3" fill="none"/><rect class="p" x="112" y="64" width="46" height="52" rx="5"/><path d="M122 76V102M128 76V102M132 76V102M139 76V102M144 76V102M150 76V102" stroke="#fff" stroke-width="2.5" fill="none"/><ellipse class="s" cx="164" cy="100" rx="12" ry="16"/><path class="o" d="M150 44C136 28 122 38 108 52"/><path class="o" d="M114 44L107 53L118 56"/><text x="126" y="24">¡BIP!</text></svg>
+      <h3>2. Escanea el producto</h3><p>Acerca su código de barras al lector. Escucharás un bip.</p></div>
+    <div class="card rv"><svg class="il" viewBox="0 0 200 140" role="img" aria-label="La pantalla muestra la lista de productos y el total"><rect class="f" x="26" y="14" width="148" height="112" rx="12"/><rect class="d" x="34" y="22" width="132" height="96" rx="6"/><rect x="40" y="28" width="120" height="84" rx="3" fill="#f5f7f4"/><path d="M48 44H98M48 60H110M48 76H90" stroke="#9fb0a6" stroke-width="4" fill="none"/><path d="M128 44H152M128 60H152M128 76H152" stroke="#9fb0a6" stroke-width="4" fill="none"/><rect x="46" y="86" width="108" height="18" rx="5" fill="#5b8a72"/><text x="54" y="99" style="fill:#fff;font-size:12px">Total $138.90</text></svg>
+      <h3>3. Revisa tu total</h3><p>Mira en la pantalla cada producto y cuánto llevas.</p></div>
+    <div class="card rv"><svg class="il" viewBox="0 0 200 140" role="img" aria-label="Una tarjeta se acerca a la pantalla para pagar"><rect class="f" x="18" y="16" width="94" height="108" rx="12"/><rect class="d" x="26" y="24" width="78" height="62" rx="6"/><circle cx="65" cy="55" r="18" fill="#5b8a72"/><path d="M56 56L63 63L75 48" fill="none" stroke="#fff" stroke-width="4"/><rect class="d" x="36" y="98" width="58" height="14" rx="7"/><g transform="rotate(-12 150 76)"><rect class="p" x="122" y="58" width="58" height="38" rx="6"/><rect x="130" y="68" width="14" height="10" rx="2" fill="#fff"/></g><path class="o" d="M120 46Q130 34 140 46M124 34Q136 20 148 34"/></svg>
+      <h3>4. Paga y sal</h3><p>Acerca tu tarjeta a la pantalla y enseña tu comprobante al salir.</p></div>
+  </div>
+  <div class="avoid">
+    <div class="rv"><b class="ok">✓</b>Primero escanea, después mete el producto al carrito.</div>
+    <div class="rv"><b class="no">✕</b>No metas productos sin escanearlos.</div>
+    <div class="rv"><b class="no">✕</b>No escanees dos productos al mismo tiempo.</div>
+  </div>
+</div></section>
+
+<section class="s" id="manual"><div class="wrap">
+  <h2 class="rv">Manual de uso: aprende a usar Bipcar</h2>
+  <p class="lead rv">Siete pasos, de la entrada a la salida de la tienda.</p>
+  <ol class="steps">
+    <li class="rv"><div><strong>Toma un carrito Bipcar</strong><span>Los encuentras en la entrada de la tienda, con la pantalla en el manubrio.</span></div></li>
+    <li class="rv"><div><strong>Toca "Comenzar"</strong><span>La pantalla se enciende y abre un carrito nuevo, con el total en $0.00.</span></div></li>
+    <li class="rv"><div><strong>Escanea cada producto</strong><span>Pasa el código de barras frente al lector antes de meter el producto al carrito. Un "bip" confirma que se registró.</span></div></li>
+    <li class="rv"><div><strong>Revisa la pantalla</strong><span>Verás el nombre, el precio y el total acumulado. Así decides si sigues o devuelves algo.</span></div></li>
+    <li class="rv"><div><strong>Si te arrepientes, quita el producto</strong><span>Escanéalo otra vez y toca "Quitar", o selecciónalo en la lista. Después regrésalo al anaquel.</span></div></li>
+    <li class="rv"><div><strong>Toca "Pagar"</strong><span>Elige tu forma de pago directamente en la pantalla.</span></div></li>
+    <li class="rv"><div><strong>Muestra tu comprobante</strong><span>Al salir, enseña el comprobante de la pantalla al personal de la puerta. Listo.</span></div></li>
+  </ol>
+  <div class="tips rv"><strong>Recomendaciones</strong>
+    <ul>
+      <li>Escanea un producto a la vez, para que el lector no se confunda.</li>
+      <li>Si un código no se lee, límpialo o acércalo más al lector. También puedes pedir ayuda al personal.</li>
+      <li>Si tu carrito no se escanea, no metas el producto hasta que el "bip" lo confirme.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="s alt" id="sucursales"><div class="wrap">
+  <h2 class="rv">Dónde encontrarnos</h2>
+  <p class="lead rv">Estamos en tres estados. Horario en todas las sucursales: de 6:00 a.m. a 10:00 p.m.</p>
+  <div class="grid">
+    <div class="card rv"><h3>Estado de México</h3><p>Sucursal Ecatepec<br>Av. Central 120, Col. Centro,<br>Ecatepec de Morelos, Edo. Méx.<br>6:00 a.m. a 10:00 p.m.</p></div>
+    <div class="card rv"><h3>Pachuca</h3><p>Sucursal Pachuca<br>Blvd. Felipe Ángeles 2400,<br>Col. Venta Prieta, Pachuca de Soto, Hgo.<br>6:00 a.m. a 10:00 p.m.</p></div>
+    <div class="card rv"><h3>Veracruz</h3><p>Sucursal Veracruz<br>Av. Díaz Mirón 1500, Col. Centro,<br>Veracruz, Ver.<br>6:00 a.m. a 10:00 p.m.</p></div>
+  </div>
+</div></section>
+
+<section class="s" id="negocios"><div class="wrap">
+  <h2 class="rv">Para supermercados y tiendas de abarrotes</h2>
+  <p class="lead rv">Bipcar se adapta al tamaño de tu negocio. Con un lector de código de barras y el catálogo de precios de tu tienda, tus clientes llevan la cuenta mientras compran.</p>
+  <div class="grid">
+    <div class="card rv"><h3>Clientes más tranquilos</h3><p>Quien conoce su total compra con más confianza y se lleva menos sorpresas en caja.</p></div>
+    <div class="card rv"><h3>Menos filas</h3><p>El pago desde el carrito reduce el tiempo de espera y libera las cajas.</p></div>
+    <div class="card rv"><h3>Para tiendas grandes y chicas</h3><p>Desde un supermercado hasta una tienda de abarrotes: hablamos y vemos qué te conviene.</p></div>
+  </div>
+</div></section>
+
+<section class="s alt" id="contacto"><div class="wrap">
+  <h2 class="rv">¿Quieres Bipcar en tu tienda?</h2>
+  <p class="lead rv">Escríbenos o llámanos y te explicamos cómo implementarlo.</p>
+  <div class="grid">
+    <div class="card rv"><h3>Correo</h3><p>bipcar@bipcar.com</p></div>
+    <div class="card rv"><h3>Teléfono</h3><p>55 6874 6998</p></div>
+    <div class="card rv"><h3>Equipo</h3><ul class="names"><li>Garduño Flores César Salvador</li><li>Navarrete Guerrero María Guadalupe</li><li>Mendoza Hernández Diego Armando</li><li>Paniagua Campuzano Jesús Misael</li></ul></div>
+  </div>
+</div></section>
+
+<footer>Bipcar &middot; Proyecto escolar &middot; Tecnológico Cuicalli &middot; 2026</footer>
+
+<script>
+(function(){
+  var dev=document.getElementById('dev'),hero=document.getElementById('inicio');
+  var START=180,TURN=540; /* grados: empieza de espaldas (180) y gira hasta quedar de frente (720) */
+  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+  function upd(){
+    var r=hero.getBoundingClientRect(),max=hero.offsetHeight-innerHeight;
+    var p=Math.min(1,Math.max(0,-r.top/max)),a=START+TURN*ease(p);
+    var tilt=-8*Math.sin(p*Math.PI);
+    dev.style.transform='rotateX('+tilt+'deg) rotateY('+a+'deg)';
+  }
+  var sl=document.querySelectorAll('#scr .sl'),dt=document.querySelectorAll('#scr .dots i'),k=0;
+  setInterval(function(){k=(k+1)%sl.length;sl.forEach(function(e,i){e.classList.toggle('on',i===k)});dt.forEach(function(e,i){e.classList.toggle('on',i===k)})},3200);
+  addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+  var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  var links=document.querySelectorAll('nav ul a');
+  var so=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+x.target.id)})}})},{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('header,section').forEach(function(s){if(s.id)so.observe(s)});
+})();
+</script>
+</body>
+</html>
